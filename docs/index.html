@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Build your own neural network in 96 mins</title>
+  <meta name="description" content="You will learn the basics of neural networks in less than 10 mins. After these lessons you will be able to write python code to recognize digits and images." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Build your own neural network in 96 mins" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="You will learn the basics of neural networks in less than 10 mins. After these lessons you will be able to write python code to recognize digits and images." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Build your own neural network in 96 mins" />
+  
+  <meta name="twitter:description" content="You will learn the basics of neural networks in less than 10 mins. After these lessons you will be able to write python code to recognize digits and images." />
+  
+
+<meta name="author" content="Aparna Menon Loecher" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="intro.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Build your own neural network in 96 mins</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Outline</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction-and-motivation"><i class="fa fa-check"></i>1. Introduction and Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#forward-propagation"><i class="fa fa-check"></i>2. Forward Propagation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#backward-propagation"><i class="fa fa-check"></i>3. Backward Propagation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#case-study-mnist"><i class="fa fa-check"></i>4. Case Study: MNIST</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#deep-learning"><i class="fa fa-check"></i>5. Deep Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="ForwardProp.html"><a href="ForwardProp.html"><i class="fa fa-check"></i><b>2</b> Forward Propagation</a><ul>
+<li class="chapter" data-level="2.1" data-path="ForwardProp.html"><a href="ForwardProp.html#MatrixMultiplication"><i class="fa fa-check"></i><b>2.1</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2" data-path="ForwardProp.html"><a href="ForwardProp.html#NN2x2"><i class="fa fa-check"></i><b>2.2</b> 2 layers, 2 nodes</a></li>
+<li class="chapter" data-level="2.3" data-path="ForwardProp.html"><a href="ForwardProp.html#NN3x3"><i class="fa fa-check"></i><b>2.3</b> 3 layers, 3 nodes</a></li>
+<li class="chapter" data-level="2.4" data-path="ForwardProp.html"><a href="ForwardProp.html#NN_python"><i class="fa fa-check"></i><b>2.4</b> Python Code</a></li>
+<li class="chapter" data-level="2.5" data-path="ForwardProp.html"><a href="ForwardProp.html#NN_python_code"><i class="fa fa-check"></i><b>2.5</b> Actual Code</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ForwardProp.html"><a href="ForwardProp.html#defining-the-nn-classes"><i class="fa fa-check"></i><b>2.5.1</b> Defining the NN classes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ForwardProp.html"><a href="ForwardProp.html#ex_ch2"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="BackwardProp.html"><a href="BackwardProp.html"><i class="fa fa-check"></i><b>3</b> Backward Propagation</a><ul>
+<li class="chapter" data-level="3.1" data-path="BackwardProp.html"><a href="BackwardProp.html#SplitError"><i class="fa fa-check"></i><b>3.1</b> Splitting the error</a></li>
+<li class="chapter" data-level="3.2" data-path="BackwardProp.html"><a href="BackwardProp.html#MatrixGradientDescent"><i class="fa fa-check"></i><b>3.2</b> Matrix View of Gradient Descent</a></li>
+<li class="chapter" data-level="3.3" data-path="BackwardProp.html"><a href="BackwardProp.html#ex_ch3"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="CaseStudy.html"><a href="CaseStudy.html"><i class="fa fa-check"></i><b>4</b> Case Study: MNIST</a><ul>
+<li class="chapter" data-level="4.1" data-path="CaseStudy.html"><a href="CaseStudy.html#train-and-test-sets"><i class="fa fa-check"></i><b>4.1</b> Train and Test Sets</a></li>
+<li class="chapter" data-level="4.2" data-path="CaseStudy.html"><a href="CaseStudy.html#train-and-test-the-neural-network"><i class="fa fa-check"></i><b>4.2</b> Train and test the neural network</a></li>
+<li class="chapter" data-level="4.3" data-path="CaseStudy.html"><a href="CaseStudy.html#Optimizing"><i class="fa fa-check"></i><b>4.3</b> Optimizing</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="CaseStudy.html"><a href="CaseStudy.html#multiple-epochs"><i class="fa fa-check"></i><b>4.3.1</b> Multiple Epochs</a></li>
+<li class="chapter" data-level="4.3.2" data-path="CaseStudy.html"><a href="CaseStudy.html#learning-rate"><i class="fa fa-check"></i><b>4.3.2</b> Learning Rate</a></li>
+<li class="chapter" data-level="4.3.3" data-path="CaseStudy.html"><a href="CaseStudy.html#number-of-hidden-nodes"><i class="fa fa-check"></i><b>4.3.3</b> Number of hidden nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="CaseStudy.html"><a href="CaseStudy.html#ex_ch4"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="DeepML.html"><a href="DeepML.html"><i class="fa fa-check"></i><b>5</b> Deep Learning</a><ul>
+<li class="chapter" data-level="5.1" data-path="DeepML.html"><a href="DeepML.html#keras"><i class="fa fa-check"></i><b>5.1</b> Keras</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="DeepML.html"><a href="DeepML.html#digit-recognition"><i class="fa fa-check"></i><b>5.1.1</b> Digit Recognition</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="DeepML.html"><a href="DeepML.html#ex_ch5"><i class="fa fa-check"></i><b>5.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="solutions.html"><a href="solutions.html"><i class="fa fa-check"></i><b>6</b> Solutions To exercises</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="references.html"><a href="references.html#make-your-own-neural-network"><i class="fa fa-check"></i><b>6.0.1</b> Make Your Own Neural Network</a></li>
+<li class="chapter" data-level="6.0.2" data-path="references.html"><a href="references.html#deep-learning-with-python"><i class="fa fa-check"></i><b>6.0.2</b> Deep learning with Python</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Build your own neural network in 96 mins</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Build your own neural network in 96 mins</h1>
+<p class="author"><em>Aparna Menon Loecher</em></p>
+</div>
+<div id="course-outline" class="section level1 unlisted unnumbered">
+<h1>Course Outline</h1>
+<div id="who-will-benefit-from-this-course" class="section level4 unlisted unnumbered">
+<h4>Who will benefit from this course ?</h4>
+<p>This series of 8 videos - which add to a total of 96 minutes in length- is for anyone who wants to seriously understand the inner workings of neural networks without being overwhelmed by mathematical notation and unreasonable prerequisites in computer science competencies.</p>
+<p>The course slowly develops the main ideas and implements them in python code right away; I believe in <em>learning by coding</em>. I do not take shortcuts when it comes to concepts and mathematical details but yet assume that you do not know much more than high school math and basic statistical intuition.
+Only our dive into python does assume a prior familiarity with programming in general and python in particular. I feel that there is an abundance of great resources to learn coding, which I would not want to replicate.</p>
+<p>This course is open to anyone!</p>
+</div>
+<div id="word-on-the-street" class="section level4 unlisted unnumbered">
+<h4>Word on the street</h4>
+
+<p><img src="figures/intro_humor.png" /></p>
+</div>
+<div id="explain-the-structure-to-me" class="section level4 unlisted unnumbered">
+<h4>Explain the structure to me</h4>
+</div>
+<div id="introduction-and-motivation" class="section level3 unlisted unnumbered">
+<h3>1. Introduction and Motivation</h3>
+<p>In part 1, I initially set the stage (<a href="intro.html#intro">1</a>) by introducing the building blocks of classifiers, in particular Boolean logic, thresholds and activation functions, leading to the sigmoid function with multiple inputs as a highly simplified model of a neuron. I then combine many of these sigmoidal units (“nodes”) into a network consisting of muliple “layers”.</p>
+</div>
+<div id="forward-propagation" class="section level3 unlisted unnumbered">
+<h3>2. Forward Propagation</h3>
+<p>After this high level motivation, the second part begins with an (optional) review of matrix multiplication (<a href="ForwardProp.html#MatrixMultiplication">2.1</a>), followed by the basic mechanism of information flow (<strong>forward propagation</strong>) in a tiny neural network consisting of just 2 layers, each with 2 nodes (<a href="ForwardProp.html#NN2x2">2.2</a>).</p>
+<p>The <span class="math inline">\(2 \times 2\)</span> network is small enough to compute forward propagation “by hand”. I then use a slightly larger network of 3 layers,3 nodes (<a href="ForwardProp.html#NN3x3">2.3</a>) to introduce matrix multiplications as a convenient way to scale up these tedious operations.</p>
+<p>I conclude the second part by implementing our first neural network code in python (@ref(NN_python)).</p>
+</div>
+<div id="backward-propagation" class="section level3 unlisted unnumbered">
+<h3>3. Backward Propagation</h3>
+<p>The third part tackles the more challenging idea of “training” a neural network by updating its weights. I apply gradient descent on the weights in each layer sucdessively, starting with the last and working our way backwards to the first. This process is called <strong>back propagation</strong> (<a href="BackwardProp.html#BackwardProp">3</a>).
+I thoroughly explain (<a href="BackwardProp.html#SplitError">3.1</a>) how the errors in a node in layer <span class="math inline">\(j\)</span> are being distributed “back to” the nodes in the previous layer <span class="math inline">\(j-1\)</span>.
+The third part ends with a matrix view of back propagation (<a href="BackwardProp.html#MatrixGradientDescent">3.2</a>).</p>
+<hr />
+<p>The following two chapters are “extras”, not included in the 96 minutes.</p>
+</div>
+<div id="case-study-mnist" class="section level3 unlisted unnumbered">
+<h3>4. Case Study: MNIST</h3>
+<p>MNIST (“Modified National Institute of Standards and Technology”) is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.</p>
+<p>In section (<a href="CaseStudy.html#CaseStudy">4</a>), I put our newly written neural network code to test how well we can identify digits from a dataset of tens of thousands of handwritten images.</p>
+</div>
+<div id="deep-learning" class="section level3 unlisted unnumbered">
+<h3>5. Deep Learning</h3>
+<p>Of course, our “home made” neural network code could not possibly compete with the existing libraries such as <a href="https://pytorch.org/">pytorch</a>, <a href="https://github.com/tensorflow/tensorflow">tensorflow</a> and <a href="https://keras.io/">keras</a> which are much more mature, robust, efficient.
+The main reason, I think it worthwhile to write your own python code is pedagogy: I believe that a lot of the mystery of NNs disappears and have witnessed a significant boost on the learning curve for most students.</p>
+<p>I (obviously) have covered only the simplest possible architecture of a neural net. For more serious image processing, text classification and other NLP type tasks, the most competetive architectures are <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">convolutional</a> (CNNs), <a href="https://explained.ai/rnn/index.html">recurrent</a> <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/"></a> as well as <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Long short-term memory</a> (LSTM) neural networks.</p>
+<p>To get you started on building your first neural network with keras, section (<a href="DeepML.html#DeepML">5</a>) shows an example of MNIST digit classification.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MYONN.pdf", "MYONN.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
