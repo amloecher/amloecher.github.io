@@ -220,9 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb8-10" title="10">n <span class="op">=</span> neuralNetwork(input_nodes,hidden_nodes,output_nodes, learning_rate)</a></code></pre></div>
 <div id="train-and-test-sets" class="section level2">
 <h2><span class="header-section-number">4.1</span> Train and Test Sets</h2>
-<p>We will use these datasets:
-- A training set <a href="http://www.pjreddie.com/media/files/mnist_train.csv" class="uri">http://www.pjreddie.com/media/files/mnist_train.csv</a>
-- A test set <a href="http://www.pjreddie.com/media/files/mnist_test.csv" class="uri">http://www.pjreddie.com/media/files/mnist_test.csv</a></p>
+<p>We will use these datasets:</p>
+<ul>
+<li>A training set <a href="http://www.pjreddie.com/media/files/mnist_train.csv" class="uri">http://www.pjreddie.com/media/files/mnist_train.csv</a></li>
+<li>A test set <a href="http://www.pjreddie.com/media/files/mnist_test.csv" class="uri">http://www.pjreddie.com/media/files/mnist_test.csv</a></li>
+</ul>
 <p>The first number is the label, and the rest of the 784 numbers are the colour values for the pixels that make up the image. These colour values range between 0 and 255.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" title="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
 <a class="sourceLine" id="cb9-2" title="2">nrows<span class="op">=</span> <span class="dv">1000</span></a>
