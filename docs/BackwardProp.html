@@ -148,12 +148,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="ForwardProp.html"><a href="ForwardProp.html#NN_python_code"><i class="fa fa-check"></i><b>2.5</b> Actual Code</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="ForwardProp.html"><a href="ForwardProp.html#defining-the-nn-classes"><i class="fa fa-check"></i><b>2.5.1</b> Defining the NN classes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="ForwardProp.html"><a href="ForwardProp.html#ex_ch2"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="ForwardProp.html"><a href="ForwardProp.html#ex_ch2"><i class="fa fa-check"></i><b>2.6</b> Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ForwardProp.html"><a href="ForwardProp.html#forward-propagation-1"><i class="fa fa-check"></i>Forward propagation</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="BackwardProp.html"><a href="BackwardProp.html"><i class="fa fa-check"></i><b>3</b> Backward Propagation</a><ul>
 <li class="chapter" data-level="3.1" data-path="BackwardProp.html"><a href="BackwardProp.html#SplitError"><i class="fa fa-check"></i><b>3.1</b> Splitting the error</a></li>
 <li class="chapter" data-level="3.2" data-path="BackwardProp.html"><a href="BackwardProp.html#MatrixGradientDescent"><i class="fa fa-check"></i><b>3.2</b> Matrix View of Gradient Descent</a></li>
-<li class="chapter" data-level="3.3" data-path="BackwardProp.html"><a href="BackwardProp.html#ex_ch3"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="BackwardProp.html"><a href="BackwardProp.html#ex_ch3"><i class="fa fa-check"></i><b>3.3</b> Exercises</a><ul>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#back-prop"><i class="fa fa-check"></i>Back Prop</a></li>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#updated-weights"><i class="fa fa-check"></i>Updated Weights</a></li>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#extra-credit"><i class="fa fa-check"></i>Extra Credit</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="CaseStudy.html"><a href="CaseStudy.html"><i class="fa fa-check"></i><b>4</b> Case Study: MNIST</a><ul>
 <li class="chapter" data-level="4.1" data-path="CaseStudy.html"><a href="CaseStudy.html#train-and-test-sets"><i class="fa fa-check"></i><b>4.1</b> Train and Test Sets</a></li>
@@ -210,8 +216,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ex_ch3" class="section level2">
 <h2><span class="header-section-number">3.3</span> Exercises</h2>
-<p>to come</p>
+<p>Consider the same fully connected <span class="math inline">\(3 x 3 x 1\)</span> NN from Exercise @ref(ex_ch2)
+<img src="figures/nn3x3x1.png" /></p>
+<p>with a sigmoidal activation function in the nodes of the hidden layer. (Input and output activations are simply the identity function)
+The weight matrices are (from left to right):</p>
+<p><span class="math display">\[
+W_{i,h} = \left( \begin{array}{ccc}
+ 1 &amp;   4 &amp;   7 \\ 
+    2 &amp;   5 &amp;   8 \\ 
+    3 &amp;   6 &amp;   9 \end{array} \right) ,
+W_{h,o} = \left( \begin{array}{c}
+  -1 \\ 
+  0.1 \\ 
+  1  \end{array} \right) 
+\]</span>
+We follow the convention of the MYONN book which defines the weight matrix as the transpose of the weights depicted in the diagrams, i.e. the <span class="math inline">\((i,j)\)</span> element <span class="math inline">\(w_{(i,j)}\)</span> is the weight going from left node j to right node i.
+(To leave no room for ambiguity: <span class="math inline">\(W_{(i,h)}(2,1) = 2\)</span> is the weight going from input node 1 to hidden node 2). The advantage is the simpler matrix multiplication.</p>
+<p>We ignore the bias term for this exercise, i.e. we assume that the three input nodes take <span class="math inline">\(x_{i,1}, x_{i,2},x_{i,3}\)</span>, respectively.</p>
+<p>The first row of your training data is given as
+<span class="math display">\[
+\left( \begin{array}{ccc|r}
+ x_1 &amp;   x_2 &amp;   x_3 &amp; y \\ 
+    0.5 &amp;   -0.25 &amp;   0.25 &amp; 0.3\end{array} \right) 
+\]</span></p>
+<div id="back-prop" class="section level3 unlisted unnumbered">
+<h3>Back Prop</h3>
+<p>Based on the computed prediction of the network from the forward pass, <span class="math inline">\(\hat{y} = W_{h,o} \cdot \vec{o}\)</span>:</p>
+<p>We are propagating errors “from right to left” and update the weights.</p>
+<p>Assume a learning rate <span class="math inline">\(\alpha = 0.1\)</span>.</p>
+<p><strong>Compute</strong></p>
+<ol style="list-style-type: decimal">
+<li>The prediction error <span class="math inline">\(e = y - \hat{y}\)</span></li>
+<li>(Based on this error) the updates to the right-most weights <span class="math inline">\(\Delta W_{h,o}\)</span></li>
+<li>The updates to the left-most weights <span class="math inline">\(\Delta W_{i,h}\)</span>. (This involves the derivative of the sigmoid function!)</li>
+</ol>
+<p>Do not use the matrix simplification of the book.</p>
+</div>
+<div id="updated-weights" class="section level3 unlisted unnumbered">
+<h3>Updated Weights</h3>
+<p>With the freshly updated weights, compute</p>
+<ol style="list-style-type: decimal">
+<li>The new prediction of the network.</li>
+<li>The (hopefully reduced) new error</li>
+</ol>
+</div>
+<div id="extra-credit" class="section level3 unlisted unnumbered">
+<h3>Extra Credit</h3>
+<ol style="list-style-type: decimal">
+<li>Think about scaling of the inputs. What happens to the gradient for large input values, e.g. 
+<span class="math display">\[
+\left( \begin{array}{ccc|r}
+ x_1 &amp;   x_2 &amp;   x_3 &amp; y \\ 
+ 50 &amp;   -25 &amp;   25 &amp; 30\end{array} \right) 
+\]</span></li>
+<li>Think about initialization of the weights. Would it be a good idea to start with zero weights, e.g. 
+<span class="math display">\[
+W_{i,h} = \left( \begin{array}{ccc}
+ 0 &amp;   0 &amp;   0 \\ 
+ 0 &amp;   0 &amp;   0 \\ 
+ 0 &amp;   0 &amp;   0 \end{array} \right)
+\]</span></li>
+</ol>
+<p><strong>Tips</strong></p>
+<ol style="list-style-type: decimal">
+<li>Use <code>numpy.dot</code> for matrix multiplications.</li>
+<li>You could use <code>scipy.special.expit(x)</code> for the sigmoid function or simply define it yourself.</li>
+</ol>
 
+</div>
 </div>
 </div>
             </section>

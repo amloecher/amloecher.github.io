@@ -148,12 +148,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="ForwardProp.html"><a href="ForwardProp.html#NN_python_code"><i class="fa fa-check"></i><b>2.5</b> Actual Code</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="ForwardProp.html"><a href="ForwardProp.html#defining-the-nn-classes"><i class="fa fa-check"></i><b>2.5.1</b> Defining the NN classes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="ForwardProp.html"><a href="ForwardProp.html#ex_ch2"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="ForwardProp.html"><a href="ForwardProp.html#ex_ch2"><i class="fa fa-check"></i><b>2.6</b> Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ForwardProp.html"><a href="ForwardProp.html#forward-propagation-1"><i class="fa fa-check"></i>Forward propagation</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="BackwardProp.html"><a href="BackwardProp.html"><i class="fa fa-check"></i><b>3</b> Backward Propagation</a><ul>
 <li class="chapter" data-level="3.1" data-path="BackwardProp.html"><a href="BackwardProp.html#SplitError"><i class="fa fa-check"></i><b>3.1</b> Splitting the error</a></li>
 <li class="chapter" data-level="3.2" data-path="BackwardProp.html"><a href="BackwardProp.html#MatrixGradientDescent"><i class="fa fa-check"></i><b>3.2</b> Matrix View of Gradient Descent</a></li>
-<li class="chapter" data-level="3.3" data-path="BackwardProp.html"><a href="BackwardProp.html#ex_ch3"><i class="fa fa-check"></i><b>3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="BackwardProp.html"><a href="BackwardProp.html#ex_ch3"><i class="fa fa-check"></i><b>3.3</b> Exercises</a><ul>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#back-prop"><i class="fa fa-check"></i>Back Prop</a></li>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#updated-weights"><i class="fa fa-check"></i>Updated Weights</a></li>
+<li class="chapter" data-level="" data-path="BackwardProp.html"><a href="BackwardProp.html#extra-credit"><i class="fa fa-check"></i>Extra Credit</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="CaseStudy.html"><a href="CaseStudy.html"><i class="fa fa-check"></i><b>4</b> Case Study: MNIST</a><ul>
 <li class="chapter" data-level="4.1" data-path="CaseStudy.html"><a href="CaseStudy.html#train-and-test-sets"><i class="fa fa-check"></i><b>4.1</b> Train and Test Sets</a></li>
@@ -324,8 +330,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ex_ch2" class="section level2">
 <h2><span class="header-section-number">2.6</span> Exercises</h2>
-<p>to come</p>
+<p>Consider a fully connected <span class="math inline">\(3 x 3 x 1\)</span> NN
+<img src="figures/nn3x3x1.png" /></p>
+<p>with a sigmoidal activation function in the nodes of the hidden layer. (Input and output activations are simply the identity function)
+The weight matrices are (from left to right):</p>
+<p><span class="math display">\[
+W_{i,h} = \left( \begin{array}{ccc}
+ 1 &amp;   4 &amp;   7 \\ 
+    2 &amp;   5 &amp;   8 \\ 
+    3 &amp;   6 &amp;   9 \end{array} \right) ,
+W_{h,o} = \left( \begin{array}{c}
+  -1 \\ 
+  0.1 \\ 
+  1  \end{array} \right) 
+\]</span>
+We follow the convention of the MYONN book which defines the weight matrix as the transpose of the weights depicted in the diagrams, i.e. the <span class="math inline">\((i,j)\)</span> element <span class="math inline">\(w_{(i,j)}\)</span> is the weight going from left node j to right node i.
+(To leave no room for ambiguity: <span class="math inline">\(W_{(i,h)}(2,1) = 2\)</span> is the weight going from input node 1 to hidden node 2). The advantage is the simpler matrix multiplication.</p>
+<p>We ignore the bias term for this exercise, i.e. we assume that the three input nodes take <span class="math inline">\(x_{i,1}, x_{i,2},x_{i,3}\)</span>, respectively.</p>
+<p>The first row of your training data is given as
+<span class="math display">\[
+\left( \begin{array}{ccc|r}
+ x_1 &amp;   x_2 &amp;   x_3 &amp; y \\ 
+    0.5 &amp;   -0.25 &amp;   0.25 &amp; 0.3\end{array} \right) 
+\]</span></p>
+<div id="forward-propagation-1" class="section level3 unlisted unnumbered">
+<h3>Forward propagation</h3>
+<p>We are passing the data “from left to right”.</p>
+<p>Compute</p>
+<ol style="list-style-type: decimal">
+<li>The input vector to the hidden layer, <span class="math inline">\(\vec{z} = W_{i,h} \cdot \vec{x}\)</span></li>
+<li>The output of the hidden layer, <span class="math inline">\(\vec{o} = sigmoid(\vec{z})\)</span></li>
+<li>The prediction of the network, <span class="math inline">\(\hat{y} = W_{h,o} \cdot \vec{o}\)</span></li>
+</ol>
 
+</div>
 </div>
 </div>
             </section>
